@@ -1,0 +1,49 @@
+プロパティに対して型チェックを行う
+
+イメージとしては、型チェックなので、
+ユーザーが入力したデータが要件にあっているのか？のバリデーション的に使用できそう！
+
+エラーはconsoeに吐かれる
+
+App.js
+
+import PropTypes from 'prop-types'; <= 'prop-types'を読み込みする。PropTypesはただの名前なので、変更しても反映はされる
+
+
+
+const App = () => {
+  const profiles = [
+    { name: "月田", age: 1},
+    { name: "泰明", age: 99},
+    { name: "高澤"}
+  ]
+
+  return (
+    <div>
+      {
+        profiles.map((profile, index) => {
+          return <User name={profile.name} age={profile.age} key={index} />
+        })
+      }
+    </div>
+  )
+}
+
+const User = (props) => {
+return <div>Hi, I am {props.name}, and {props.age} years old!!!!</div>
+}
+
+User.defaultProps = {
+  age: 1000000
+}
+
+User.propTypes = {
+  name: PropTypes.string,
+  age: PropTypes.number.isRequired  <= isRequiredで必須にできる。defaultPropsがあれば、エラーは起きない。
+}
+
+
+
+export default App;
+
+
