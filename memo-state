@@ -1,0 +1,117 @@
+React の Component には内部で状態を持つことができる
+内部の状態のことを State という
+
+propsとは違う点として、 State は Component内でしか使用できない
+
+propsは変更不可能 イミュータブル
+stateは変更可能 ミュータブル
+
+=======================================================
+関数は()で囲むとreturnが不要になる
+=======================================================
+
+const App = () => (<Counter></Counter>)
+
+=======================================================
+stateを使う場合は classが必要 また、componentは継承することで使用可能
+=======================================================
+
+import React, { Component } from "react" <= Componentを呼び出す必要がある
+
+const App = () => (<Counter></Counter>)
+
+class Counter extends Component {
+  render(){     <= render関数が必要となる
+    return (<div>counter</div>)
+  }
+}
+
+=======================================================
+constructor で初期化処理し、stateを渡す
+=======================================================
+Counter クラスが呼び出されると呼び出される関数
+
+class Counter extends Component {
+
+  constructor(props){  <= これ
+    super(props) => super 親クラスでpropsを初期化処理する
+    console.log(this.state) => undifined
+    this.state = { count: 0}
+  }
+
+  render(){
+    console.log(this.state)
+  return (<div>count: { this.state.count}</div>)
+  }
+}
+
+
+=======================================================
+returnの中は2つ以上をの要素を入れられない。入れる場合は、React.Fragment <= vue.jsでいうtemplateかな？？
+=======================================================
+
+間違い例
+render(){
+    return (
+      <div>count: { this.state.count}</div>
+      <button>+1</button>
+    )
+  }
+
+正しいやり方
+
+  render(){
+    return (
+      <React.Fragment>
+        <div>count: { this.state.count}</div>
+        <button>+1</button>
+      </React.Fragment>
+    )
+  }
+
+
+=======================================================
+increment & decrement処理を入れてみる
+=======================================================
+状態を変更する場合に必ず入れるのは setState 
+
+setStateを行うとrender()が発火するため、必ず入れること=> 変更されるところだけDOM変更が起きる
+
+App.js
+
+import React, { Component } from "react"
+import { render } from "react-dom"
+
+const App = () => (<Counter></Counter>)
+
+class Counter extends Component {
+
+  constructor(props){
+    super(props)
+    this.state = { count: 0}
+  }
+
+  handlePlusButton = () => {
+    this.setState({ count: this.state.count + 1})
+  } 
+
+  handleMinusButton = () => {
+    this.setState({ count: this.state.count - 1})
+  }
+
+  render(){
+    return (
+      <React.Fragment>
+        <div>count: { this.state.count}</div> 
+        <button onClick={this.handlePlusButton}>+1</button>
+        <button onClick={this.handleMinusButton}>-1</button>
+      </React.Fragment>
+    )
+  }
+}
+
+export default App;
+
+
+
+
