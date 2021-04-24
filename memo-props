@@ -1,0 +1,110 @@
+props
+=>コンポーネントの属性のこと(数値・文字列・関数・オブジェクト)
+props.name とかprops.ageなど
+
+
+====================================================================
+例
+====================================================================
+
+const App = () =>{
+  return (
+    <div>
+      <User name={"Taro"} age={10}/>
+      <User name={"akiyoshi"} age={999999}/>
+    </div>
+  )
+}
+
+const User = (props) => {
+return <div>Hi, I am {props.name}!!, and {props.age} years old.</div>
+}
+
+
+====================================================================
+変数をループ(map)するやり方
+====================================================================
+
+const App = () =>{
+  const profiles = [
+    { name: "taro", age: 10},
+    { name: "akiyoshi", age: 999999}
+  ]
+
+  return (
+    <div>
+      {
+        profiles.map((profile) => {
+          return <User name={profile.name} age={profile.age}/>
+        })
+      }
+    </div>
+  )
+}
+
+const User = (props) => {
+return <div>Hi, I am {props.name}!!, and {props.age} years old.</div>
+}
+
+上記で対応可能
+ただ、warningが出る
+Warning: Each child in a list should have a unique "key" prop.
+
+====================================================================
+React をより一層活かすために、keyを与え、どのDOMが変わったのか目印を与えること
+====================================================================
+
+const App = () =>{
+  const profiles = [
+    { name: "taro", age: 10},
+    { name: "akiyoshi", age: 999999}
+  ]
+
+  return (
+    <div>
+      {
+        profiles.map((profile, index) => {
+          return <User name={profile.name} age={profile.age} key={index}/>
+        })
+      }
+    </div>
+  )
+}
+
+const User = (props) => {
+return <div>Hi, I am {props.name}!!, and {props.age} years old.</div>
+}
+
+====================================================================
+もし、送られてきた配列にnameはあるけど、ageがない場合にはデフォルトで年齢を入れることができる
+====================================================================
+
+const App = () =>{
+  const profiles = [
+    { name: "taro", age: 10},
+    { name: "akiyoshi", age: 999999},
+    { name: "NoName"}
+  ]
+
+  return (
+    <div>
+      {
+        profiles.map((profile, index) => {
+          return <User name={profile.name} age={profile.age} key={index}/>
+        })
+      }
+    </div>
+  )
+}
+
+const User = (props) => {
+return <div>Hi, I am {props.name}!!, and {props.age} years old.</div>
+}
+
+★ 今回は顔文字でやってみた
+User.defaultProps = {
+  age: "('ω')"
+}
+
+
+
