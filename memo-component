@@ -1,0 +1,23 @@
+component
+- ファンクショナルコンポーネント
+- クラスコンポーネント
+
+
+ファンクショナルコンポーネント
+
+const App = () => {
+  return <Cat />
+}
+
+const Cat = () => {
+  return <div>Neoun!</div>
+}
+
+クラスコンポーネント
+
+Class Example extends Component{
+    render(){
+        <React.Fragment>
+        </React.Fragment>
+    }
+}
