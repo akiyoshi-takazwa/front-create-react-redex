@@ -17,3 +17,36 @@ export const DECREMENT = 'DECREMENT'
 export const increment = () => ({ type: 'INCREMENT'})
 
 export const decrement = () => ({ type: 'DECREMENT'})
+
+=================================================
+reducerについて
+=================================================
+
+アクションが発生した時に、typeに応じて、状態が変化することを定義すること
+コード内ではstateで実装する
+
+conbineReducer => reducerを結合するためにもの
+
+import { combineReducers } from 'redux'
+import count from './count'
+
+export default combineReducers({ count })  => 1つしか状態を持たないことは稀で、多くの場合下記のように記載する
+
+ex)
+export default combineReducers({ count, foo, bar })
+
+
+count は下記のように定義
+
+import { INCREMENT, DECREMENT } from '../actions'
+
+const initalState = { value:0 }
+
+export default (state = initalState, action) => {
+    switch (action.type){
+        case INCREMENT: { value: state.value + 1 }
+        case DECREMENT: { value: state.value - 1 }
+        default: 
+            return state
+    }
+}
