@@ -1,0 +1,19 @@
+トランスパイラー
+=>
+JSXの書き方から、Javascriptの読み込みの形に変換すること
+
+JSX
+const foo =
+<div>
+  Hello
+</div>
+
+コンパイル後
+var foo = React.createElement(
+  "div",
+  null,
+  "Hello"
+);
+
+https://bvaughn.github.io/babel-repl/
+上記サイトでコンパイル後のデータを出せる
