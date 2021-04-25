@@ -1,0 +1,136 @@
+============================================================
+データの取得
+============================================================
+
+https://udemy-utils.herokuapp.com/api/v1/events?token=token123
+
+上記に対して、Requestを送るとResponceは下記
+
+// 20210426074523
+// https://udemy-utils.herokuapp.com/api/v1/events?token=token123
+
+[
+  {
+    "id": 1,
+    "title": "Let's have an event 1!",
+    "body": "This is the body for event 1."
+  },
+  {
+    "id": 2,
+    "title": "Let's have an event 2!",
+    "body": "This is the body for event 2."
+  },
+  {
+    "id": 3,
+    "title": "Let's have an event 3!",
+    "body": "This is the body for event 3."
+  },
+  {
+    "id": 4,
+    "title": "Let's have an event 4!",
+    "body": "This is the body for event 4."
+  },
+  {
+    "id": 5,
+    "title": "Let's have an event 5!",
+    "body": "This is the body for event 5."
+  },
+  {
+    "id": 6,
+    "title": "Let's have an event 6!",
+    "body": "This is the body for event 6."
+  },
+  {
+    "id": 7,
+    "title": "Let's have an event 7!",
+    "body": "This is the body for event 7."
+  },
+  {
+    "id": 8,
+    "title": "Let's have an event 8!",
+    "body": "This is the body for event 8."
+  },
+  {
+    "id": 9,
+    "title": "Let's have an event 9!",
+    "body": "This is the body for event 9."
+  },
+  {
+    "id": 10,
+    "title": "Let's have an event 10!",
+    "body": "This is the body for event 10."
+  }
+]
+
+============================================================
+認証
+============================================================
+https://udemy-utils.herokuapp.com/api/v1/events?token=token456
+
+Requestに必要なデータはeventsまで。
+token以降は認証のために必要
+456に変更した場合、Responseは空となる
+
+
+============================================================
+optionsメソッドについて
+============================================================
+
+https://react-application-development.firebaseapp.com/
+
+上記で新規イベントを作成した際や更新した際のnetworkで下記のように表示される
+
+events?token=token123  => options
+events?token=token123  => post  データ作成時、そのデータが保存され、保存データを返す
+events?token=token123  => get
+
+同じ名前なのに行っている処理は違う。
+最初は optionsメソッド。
+
+何を行っているか？
+=> 今回送ったデータが正常なのか？次のメソッドに進んでも良いのかを判断している
+
+
+============================================================
+curl でAPIを確認する
+============================================================
+
+実行例
+https://udemy-utils.herokuapp.com/
+
+curl --request GET --url \ 'url'
+
+データ作成時：
+curl --request POST \ --url 'url' \ --geader 'Content-type: application/json' \ --data '{
+    "key": "value",
+    "key2": "value2"
+}'
+
+データ更新時： uelにidを入れる
+curl --request PUT \ --url 'url' \ --geader 'Content-type: application/json' \ --data '{
+    "key": "value",
+    "key2": "value2"
+}'
+
+データ削除時： uelにidを入れる
+curl --request DELETE \ --url 'url' \ --geader 'Content-type: application/json' \ --data '{
+    "key": "value",
+    "key2": "value2"
+}'
+
+
+============================================================
+axios
+============================================================
+
+外部のサーバに対してhttpを送るためのライブラリ
+
+yarn add axios  
+
+============================================================
+redux-thunk
+============================================================
+
+非同期処理ができるライブラリ
+
+yarn add redux-thunk
