@@ -1,11 +1,13 @@
 import { INCREMENT, DECREMENT } from '../actions'
 
-const initalState = { value:0 }
+const initalState = { value: 0 }
 
 export default (state = initalState, action) => {
-    switch (action.type){
-        case INCREMENT: { value: state.value + 1 }
-        case DECREMENT: { value: state.value - 1 }
+    switch (action.type) {
+        case INCREMENT: 
+            return { value: state.value + 1 }
+        case DECREMENT: 
+            return { value: state.value - 1 }
         default: 
             return state
     }

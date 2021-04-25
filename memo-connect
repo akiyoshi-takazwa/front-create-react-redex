@@ -1,0 +1,45 @@
+================================================
+mapStateToProps について
+================================================
+
+stateの情報から特定のコンポーネントに必要な情報を取り出し、マッピングする
+
+const mapStateToProps = state => ({ value: state.count.value })
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+================================================
+mapDispatchToProps について
+================================================
+
+あるアクションが起こった際に、typeに応じた関数を実行させる
+
+書き方はどちらでも可能
+
+
+const mapDispatchToProps = dispatch => ({
+   increment: () => dispatch(increment()),
+   decrement: () => dispatch(decrement())
+})
+
+or 
+
+const mapDispatchToProps = ({ increment, decrement })
+
+================================================
+connectするため、下記は不要となる
+================================================
+
+
+  // constructor(props) { => reducerで処理を行うので、処理が不要となる
+  //   super(props)
+  //   this.state = { count:0 }
+  // }
+
+  // handlePlusButton = () => {  =>actionCreaterで行うので不要
+  //   this.setState({ count: this.state + 1 })
+  // }
+
+  // handleMinusButton = () => {   =>actionCreaterで行うので不要
+  //   this.setState({ count: this.state - 1 })
+  // }
