@@ -1,0 +1,19 @@
+redux　インストール
+yarn add redux react-redux
+
+=================================================
+アクションの作成
+=================================================
+
+アプリケーション内で何が起きたかを示すデータのこと
+
+typeをもつオブジェクトのこと
+
+主な用途は、view側で使用するため、exportをしている => アクションクリエータ
+
+export const INCREMENT = 'INCREMENT'
+export const DECREMENT = 'DECREMENT'
+
+export const increment = () => ({ type: 'INCREMENT'})
+
+export const decrement = () => ({ type: 'DECREMENT'})
