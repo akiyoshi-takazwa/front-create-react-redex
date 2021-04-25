@@ -43,3 +43,8 @@ connectするため、下記は不要となる
   // handleMinusButton = () => {   =>actionCreaterで行うので不要
   //   this.setState({ count: this.state - 1 })
   // }
+
+
+下記はudemy 質問
+https://www.udemy.com/course/react-application-development/learn/lecture/9915130#questions
+
