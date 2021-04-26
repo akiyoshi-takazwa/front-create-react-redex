@@ -1,0 +1,45 @@
+==================================================
+componentDidMount
+==================================================
+
+コンポーネントがマウントされた際にコールバックされるメソッド
+
+初期マウント時、例えば、今回でいうとイベント一覧を取得することができる
+
+
+==================================================
+redux-thunk
+==================================================
+
+https://github.com/reduxjs/redux-thunk
+
+上記パッケージを使用するとaction-createrがaction(関数)を返すことができる
+
+通常、オブジェクトを返すため、非同期処理(関数)は入れることは推奨されていないが、
+上記パッケージを入れると対応可能
+
+src/actions/index.js
+
+import axios from 'axios'
+
+export const READ_EVENTS = 'READ_EVENTS'
+
+export const readEvents = () => async dispatch =>{
+
+  const ROOT_URL = 'https://udemy-utils.herokuapp.com/api/v1'
+  const QUERYSTRING = '?token=token123'
+
+  const response = await axios.get(`${ROOT_URL}/events${QUERYSTRING}`)
+  console.log(response)
+  dispatch ({ type: READ_EVENTS, response })
+}
+
+
+{data: Array(10), status: 200, statusText: "OK", headers: {…}, config: {…}, …}
+config: {url: "https://udemy-utils.herokuapp.com/api/v1/events?token=token123", method: "get", headers: {…}, transformRequest: Array(1), transformResponse: Array(1), …}
+data: (10) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+headers: {cache-control: "max-age=0, private, must-revalidate", content-type: "application/json; charset=utf-8"}
+request: XMLHttpRequest {readyState: 4, timeout: 0, withCredentials: false, upload: XMLHttpRequestUpload, onreadystatechange: ƒ, …}
+status: 200
+statusText: "OK"
+__proto__: Object
