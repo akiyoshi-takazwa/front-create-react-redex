@@ -43,3 +43,26 @@ request: XMLHttpRequest {readyState: 4, timeout: 0, withCredentials: false, uplo
 status: 200
 statusText: "OK"
 __proto__: Object
+
+==================================================
+返ってきたdataを読み取る際に早く読み取る処理
+==================================================
+
+[
+  {id: 1, title: "Let's have an event 1!", body: "This is the body for event 1."},
+  {id: 2, title: "Let's have an event 1!", body: "This is the body for event 2."}
+]
+
+上記のようなレスポンスが返ってきた際に、特定のデータのみ抽出したい際、
+全てのデータを読み込んでから処理するため重くなる
+
+その場合は、下記の構造にすることで、特定のデータの取得のみできるので処理は早い。
+src/reducers/events.js
+
+import _ from 'lodash'
+
+console.log(_.mapKeys(action.response.data), 'id')
+
+  1: {id: 1, title: "Let's have an event 1!", body: "This is the body for event 1."},
+  2: {id: 2, title: "Let's have an event 1!", body: "This is the body for event 2."}
+
