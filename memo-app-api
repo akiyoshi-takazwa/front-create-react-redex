@@ -66,3 +66,16 @@ console.log(_.mapKeys(action.response.data), 'id')
   1: {id: 1, title: "Let's have an event 1!", body: "This is the body for event 1."},
   2: {id: 2, title: "Let's have an event 1!", body: "This is the body for event 2."}
 
+==================================================
+リンク機能をもつパッケージ 
+==================================================
+
+インストール
+
+yarn add react-router-dom
+
+==================================================
+フォームパッケージ 
+==================================================
+
+yarn add redux-form
