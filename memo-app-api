@@ -96,6 +96,63 @@ pristine
 
 submitting
 
+==================================================
+デバックをしやすくするツール
+==================================================
+
+yarn add redux-devtools-extension
+
+reduxが使われていれば、chome で見れる
+https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=ja
+
+
+import { composeWithDevTools } from 'redux-devtools-extension'
+
+const enhancer = process.env.NODE_ENV === 'development' ?
+  composeWithDevTools(applyMiddleware(thunk)) : applyMiddleware(thunk)
+const store = createStore(reducer, enhancer);
+
+
+==================================================
+exact
+==================================================
+
+マッチする制限を厳しくする
+なるべくつけたほうが良さそう？　なくても動く
+
+<Route exact path="/events" component={EventsIndex}/>
 
 
 
+==================================================
+ルーティングの設定
+==================================================
+
+変数を入れる場合は、  :  を入れること
+
+ex ) 
+<Route path="/events/:id" component={EventsShow}/>
+
+
+==================================================
+非同期処理　削除などの設定
+==================================================
+
+  async onDeleteClick(){
+    await this.props.deleteEvent(id)
+    this.props.history.push('/')
+  }
+
+  上記のように asyncを使う
+
+
+==================================================
+デバック　なんの値がきているのか？
+==================================================
+
+console.log(this.props.match)
+
+==================================================
+スプレッド演算子
+==================================================
+return {...events}
