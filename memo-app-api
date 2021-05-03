@@ -1,0 +1,101 @@
+==================================================
+componentDidMount
+==================================================
+
+コンポーネントがマウントされた際にコールバックされるメソッド
+
+初期マウント時、例えば、今回でいうとイベント一覧を取得することができる
+
+
+==================================================
+redux-thunk
+==================================================
+
+https://github.com/reduxjs/redux-thunk
+
+上記パッケージを使用するとaction-createrがaction(関数)を返すことができる
+
+通常、オブジェクトを返すため、非同期処理(関数)は入れることは推奨されていないが、
+上記パッケージを入れると対応可能
+
+src/actions/index.js
+
+import axios from 'axios'
+
+export const READ_EVENTS = 'READ_EVENTS'
+
+export const readEvents = () => async dispatch =>{
+
+  const ROOT_URL = 'https://udemy-utils.herokuapp.com/api/v1'
+  const QUERYSTRING = '?token=token123'
+
+  const response = await axios.get(`${ROOT_URL}/events${QUERYSTRING}`)
+  console.log(response)
+  dispatch ({ type: READ_EVENTS, response })
+}
+
+
+{data: Array(10), status: 200, statusText: "OK", headers: {…}, config: {…}, …}
+config: {url: "https://udemy-utils.herokuapp.com/api/v1/events?token=token123", method: "get", headers: {…}, transformRequest: Array(1), transformResponse: Array(1), …}
+data: (10) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+headers: {cache-control: "max-age=0, private, must-revalidate", content-type: "application/json; charset=utf-8"}
+request: XMLHttpRequest {readyState: 4, timeout: 0, withCredentials: false, upload: XMLHttpRequestUpload, onreadystatechange: ƒ, …}
+status: 200
+statusText: "OK"
+__proto__: Object
+
+==================================================
+返ってきたdataを読み取る際に早く読み取る処理
+==================================================
+
+[
+  {id: 1, title: "Let's have an event 1!", body: "This is the body for event 1."},
+  {id: 2, title: "Let's have an event 1!", body: "This is the body for event 2."}
+]
+
+上記のようなレスポンスが返ってきた際に、特定のデータのみ抽出したい際、
+全てのデータを読み込んでから処理するため重くなる
+
+その場合は、下記の構造にすることで、特定のデータの取得のみできるので処理は早い。
+src/reducers/events.js
+
+import _ from 'lodash'
+
+console.log(_.mapKeys(action.response.data), 'id')
+
+  1: {id: 1, title: "Let's have an event 1!", body: "This is the body for event 1."},
+  2: {id: 2, title: "Let's have an event 1!", body: "This is the body for event 2."}
+
+==================================================
+リンク機能をもつパッケージ 
+==================================================
+
+インストール
+
+yarn add react-router-dom
+
+==================================================
+フォームパッケージ 
+==================================================
+
+yarn add redux-form
+
+const { input, label, type, meta: { touched, error } } =field
+
+touched => 入力フォームに一回でも触ったらの発火するイベント
+
+==================================================
+フォームのUI設計
+==================================================
+
+★何も入力されてない時は、非活性にする
+
+pristine
+
+★連打されてしまう場合の対処
+
+submitting
+
+
+
+
