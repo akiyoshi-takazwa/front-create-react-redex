@@ -79,3 +79,8 @@ yarn add react-router-dom
 ==================================================
 
 yarn add redux-form
+
+const { input, label, type, meta: { touched, error } } =field
+
+touched => 入力フォームに一回でも触ったらの発火するイベント
+
