@@ -46,10 +46,11 @@ class EventsIndex extends Component {
       color: "white",
     }
     return (
+      <Link to ="/events/new">
         <Fab style={buttonStyle} color="primary" aria-label="add">
-          <Link to ="/events/new"/>
-          <AddIcon style={iconStyle}/>
-      </Fab>
+            <AddIcon style={iconStyle}/>
+        </Fab>
+      </Link>
     )
   }
 
